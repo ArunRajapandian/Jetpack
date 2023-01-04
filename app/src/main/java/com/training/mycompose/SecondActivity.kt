@@ -118,11 +118,11 @@ fun commonSpace(){
 @Composable
 fun inputFields() {
     Column(Modifier.padding(16.dp)) {
-        var textState = remember { mutableStateOf(TextFieldValue()) }
         var phoneNumber = remember { mutableStateOf(TextFieldValue()) }
+        var passWord = remember { mutableStateOf(TextFieldValue()) }
         OutlinedTextField(
-            value = textState.value,
-            onValueChange = { textState.value = it },
+            value = phoneNumber.value,
+            onValueChange = { phoneNumber.value = it },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             placeholder = { Text(text = "phone ")} ,
@@ -140,8 +140,8 @@ fun inputFields() {
         commonSpace()
 
         OutlinedTextField(
-            value = phoneNumber.value,
-            onValueChange = { phoneNumber.value = it },
+            value = passWord.value,
+            onValueChange = { passWord.value = it },
             modifier = Modifier.fillMaxWidth(),
             leadingIcon = { Icon(imageVector = Icons.Filled.Lock, contentDescription = null, tint = colorResource(
                 id = R.color.custom_color
