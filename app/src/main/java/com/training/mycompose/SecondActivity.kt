@@ -11,37 +11,27 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Phone
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Gray
-import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
@@ -83,7 +73,7 @@ fun LoginScreen() {
         SimpleText("Welcome to Login")
         commonSpace()
         inputFields()
-        submitButton(LocalContext.current)
+
         Text(text = "or", color = Blue, fontSize = 16.sp, modifier = Modifier.padding(top = 15.dp))
         commonSpace()
         socialLogin()
@@ -134,7 +124,6 @@ fun inputFields() {
                 focusedBorderColor = Blue,
                 unfocusedBorderColor = Gray),
             shape = RoundedCornerShape(30)
-
         )
 
         commonSpace()
@@ -151,15 +140,24 @@ fun inputFields() {
             shape = RoundedCornerShape(30)
 
         )
+        commonSpace()
+        submitButton(LocalContext.current,phoneNumber,passWord)
 
     }
 }
 
 @Composable
-fun submitButton(context:Context){
-    val nextActivity = Intent(context,HomeActivity::class.java)
+fun submitButton(
+    context: Context,
+    phoneNumber: MutableState<TextFieldValue>,
+    passWord: MutableState<TextFieldValue>
+){
+
     Button(
         onClick = {
+            val nextActivity = Intent(context,HomeActivity::class.java)
+            nextActivity.putExtra("phone",phoneNumber.value.text )
+            nextActivity.putExtra("password",passWord.value.text )
             context.startActivity(nextActivity)
         },
         modifier = Modifier
