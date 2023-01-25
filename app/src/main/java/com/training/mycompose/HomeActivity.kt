@@ -43,10 +43,8 @@ class HomeActivity : ComponentActivity() {
     var phNo = ""
     var passWord = ""
 
-    // private var imagesArray=ArrayList<String>()
     var imagesArray: ArrayList<Int> = ArrayList()
 
-    var data = 1..100
     @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,13 +71,6 @@ class HomeActivity : ComponentActivity() {
             phNo = intent.getStringExtra("phone")!!
 
             imagesArray.clear()
-            /*
-                imagesArray.add(R.drawable.delivery)
-                imagesArray.add(R.drawable.delivery)
-                imagesArray.add(R.drawable.delivery)
-                imagesArray.add(R.drawable.delivery)
-                imagesArray.add(R.drawable.delivery)
-                imagesArray.add(R.drawable.delivery)*/
 
         }
     }
@@ -157,9 +148,11 @@ fun movieListItem(movieDetails: MovieDetails) {
                     .fillMaxWidth()
                     .align(Alignment.CenterVertically)
                     .clickable {
+                    /*
                         Toast
                             .makeText(context, movieDetails.title, Toast.LENGTH_LONG)
                             .show()
+*/
                     }
             ) {
 
@@ -185,13 +178,7 @@ private fun movieImage(movieDetails: MovieDetails) {
             .size(84.dp)
             .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
             .clickable {
-                val intent = Intent(context, MainActivity::class.java)
-                intent.putExtra("name", movieDetails.title)
-                context.startActivity(intent)
-
-                Toast
-                    .makeText(context, movieDetails.id.toString(), Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(context, movieDetails.id.toString(), Toast.LENGTH_LONG).show()
             }
     )
 }

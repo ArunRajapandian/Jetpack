@@ -19,10 +19,10 @@ import com.google.accompanist.pager.rememberPagerState
 @ExperimentalPagerApi
 @Composable
 public  fun viewPager(){
-    Column() {
+    Column {
         val pageList= arrayListOf(
-            PagerModel(R.drawable.captain_america,"Captain Marvel is an extraterrestrial Kree warrior who finds herself caught in the battle between people and the Skrulls."),
-            PagerModel(R.drawable.thor," Thor (Chris Hemsworth) will soon inherit the throne of Asgard from his aging father."),
+            PagerModel(R.drawable.captain_america,"Captain Marvel is an extraterrestrial Kree warrior who finds herself caught in the battle between her people and the Skrulls."),
+            PagerModel(R.drawable.thor," Thor \"(Chris Hemsworth)\" will soon inherit the throne of Asgard from his aging father."),
             PagerModel(R.drawable.wakanda,"The people of Wakanda fight to protect their home from intervening world powers as they mourn the death of King T'Challa."),
         )
         val pageState = rememberPagerState()
@@ -45,6 +45,6 @@ public  fun viewPager(){
 fun PagerUi(pagerModel: PagerModel){
     Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(painter = painterResource(id =pagerModel.image ), contentDescription =null, modifier = Modifier.size(200.dp) )
-        Text(text = pagerModel.description, fontFamily = FontFamily.Cursive,modifier = Modifier.padding(10.dp).align(alignment = Alignment.CenterHorizontally) )
+        Text(text = pagerModel.description, fontFamily = FontFamily.Cursive, modifier = Modifier.padding(start = 10.dp, end = 10.dp) )
     }
 }
